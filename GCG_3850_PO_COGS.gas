@@ -1,0 +1,573 @@
+Program.Sub.ScreenSU.Start
+gui.SS_Form1..create
+gui.SS_Form1..caption("PO COGS Breakdown")
+gui.SS_Form1..size(6160,5910)
+gui.SS_Form1..position(0,0)
+gui.SS_Form1..event(unload,ss_form1_unload)
+gui.SS_Form1..alwaysontop(False)
+gui.SS_Form1..fontname("Arial")
+gui.SS_Form1..fontsize(8)
+gui.SS_Form1..forecolor(0)
+gui.SS_Form1..fontstyle(,,,,)
+gui.SS_Form1..BackColor(-2147483633)
+gui.SS_Form1..controlbox(True)
+gui.SS_Form1..maxbutton(False)
+gui.SS_Form1..minbutton(False)
+gui.SS_Form1..mousepointer(0)
+gui.SS_Form1..moveable(True)
+gui.SS_Form1..sizeable(False)
+gui.SS_Form1..ShowInTaskBar(True)
+gui.SS_Form1..titlebar(True)
+gui.SS_Form1.lbl_dtpStart.create(label,"Start Date",True,1800,200,1,100,135,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.dtpStart.create(datepicker)
+gui.SS_Form1.dtpStart.visible(True)
+gui.SS_Form1.dtpStart.size(1800,345)
+gui.SS_Form1.dtpStart.zorder(0)
+gui.SS_Form1.dtpStart.position(100,335)
+gui.SS_Form1.dtpStart.enabled(True)
+gui.SS_Form1.dtpStart.checkbox(False)
+gui.SS_Form1.lbl_dtpStop.create(label,"Stop Date",True,1800,200,1,1985,135,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.dtpStop.create(datepicker)
+gui.SS_Form1.dtpStop.visible(True)
+gui.SS_Form1.dtpStop.size(1800,345)
+gui.SS_Form1.dtpStop.zorder(0)
+gui.SS_Form1.dtpStop.position(1985,335)
+gui.SS_Form1.dtpStop.enabled(True)
+gui.SS_Form1.dtpStop.checkbox(False)
+gui.SS_Form1.lbl_txtBegGL.create(label,"Beginning GL Account",True,1800,200,1,100,850,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.txtBegGL.create(textbox,"",True,1800,330,0,100,1050,True,0,Arial,8,16777215,1)
+gui.SS_Form1.txtBegGL.maxLength(15)
+gui.SS_Form1.txtBegGL.event(lostfocus,txtbeggl_lostfocus)
+gui.SS_Form1.cmd_txtBegGL.create(button)
+gui.SS_Form1.cmd_txtBegGL.caption("^")
+gui.SS_Form1.cmd_txtBegGL.visible(True)
+gui.SS_Form1.cmd_txtBegGL.size(330,330)
+gui.SS_Form1.cmd_txtBegGL.zorder(0)
+gui.SS_Form1.cmd_txtBegGL.position(1985,1050)
+gui.SS_Form1.cmd_txtBegGL.enabled(True)
+gui.SS_Form1.cmd_txtBegGL.fontname("Arial")
+gui.SS_Form1.cmd_txtBegGL.fontsize(8)
+gui.SS_Form1.cmd_txtBegGL.event(click,cmd_txtbeggl_click)
+gui.SS_Form1.lbl_txtEndGL.create(label,"Ending GL Account",True,1800,200,1,2455,850,True,0,Arial,8,-2147483633,0)
+gui.SS_Form1.txtEndGL.create(textbox,"",True,1800,330,0,2455,1050,True,0,Arial,8,16777215,1)
+gui.SS_Form1.txtEndGL.maxLength(15)
+gui.SS_Form1.cmd_txtEndGL.create(button)
+gui.SS_Form1.cmd_txtEndGL.caption("^")
+gui.SS_Form1.cmd_txtEndGL.visible(True)
+gui.SS_Form1.cmd_txtEndGL.size(330,330)
+gui.SS_Form1.cmd_txtEndGL.zorder(0)
+gui.SS_Form1.cmd_txtEndGL.position(4340,1050)
+gui.SS_Form1.cmd_txtEndGL.enabled(True)
+gui.SS_Form1.cmd_txtEndGL.fontname("Arial")
+gui.SS_Form1.cmd_txtEndGL.fontsize(8)
+gui.SS_Form1.cmd_txtEndGL.event(click,cmd_txtendgl_click)
+gui.SS_Form1.chkAll.create(checkbox)
+gui.SS_Form1.chkAll.caption("All GL Accounts")
+gui.SS_Form1.chkAll.visible(True)
+gui.SS_Form1.chkAll.size(1800,300)
+gui.SS_Form1.chkAll.zorder(0)
+gui.SS_Form1.chkAll.position(100,1385)
+gui.SS_Form1.chkAll.enabled(True)
+gui.SS_Form1.chkAll.alignment(0)
+gui.SS_Form1.chkAll.fontname("Arial")
+gui.SS_Form1.chkAll.fontsize(8)
+gui.SS_Form1.chkAll.event(click,chkall_click)
+gui.SS_Form1.lvwGL.create(listview)
+gui.SS_Form1.lvwGL.view(3)
+gui.SS_Form1.lvwGL.addlistviewcolumn("Beginning GL Account",2705,0)
+gui.SS_Form1.lvwGL.addlistviewcolumn("Ending GL Account",2705,0)
+gui.SS_Form1.lvwGL.visible(True)
+gui.SS_Form1.lvwGL.size(5810,2000)
+gui.SS_Form1.lvwGL.zorder(0)
+gui.SS_Form1.lvwGL.position(100,1935)
+gui.SS_Form1.lvwGL.enabled(True)
+gui.SS_Form1.lvwGL.fontname("Arial")
+gui.SS_Form1.lvwGL.fontsize(8)
+gui.SS_Form1.cmd_lvwGLAdd.create(button)
+gui.SS_Form1.cmd_lvwGLAdd.caption("Add")
+gui.SS_Form1.cmd_lvwGLAdd.visible(True)
+gui.SS_Form1.cmd_lvwGLAdd.size(1000,330)
+gui.SS_Form1.cmd_lvwGLAdd.zorder(0)
+gui.SS_Form1.cmd_lvwGLAdd.position(4810,1050)
+gui.SS_Form1.cmd_lvwGLAdd.enabled(True)
+gui.SS_Form1.cmd_lvwGLAdd.fontname("Arial")
+gui.SS_Form1.cmd_lvwGLAdd.fontsize(8)
+gui.SS_Form1.cmd_lvwGLAdd.event(click,cmd_lvwgladd_click)
+gui.SS_Form1.cmd_lvwGLAdd.SetInternationalID(7600)
+gui.SS_Form1.cmd_lvwGLDelete.create(button)
+gui.SS_Form1.cmd_lvwGLDelete.caption("Delete")
+gui.SS_Form1.cmd_lvwGLDelete.visible(True)
+gui.SS_Form1.cmd_lvwGLDelete.size(1000,330)
+gui.SS_Form1.cmd_lvwGLDelete.zorder(0)
+gui.SS_Form1.cmd_lvwGLDelete.position(100,4020)
+gui.SS_Form1.cmd_lvwGLDelete.enabled(True)
+gui.SS_Form1.cmd_lvwGLDelete.fontname("Arial")
+gui.SS_Form1.cmd_lvwGLDelete.fontsize(8)
+gui.SS_Form1.cmd_lvwGLDelete.event(click,cmd_lvwgldelete_click)
+gui.SS_Form1.cmd_lvwGLDelete.SetInternationalID(171500)
+gui.SS_Form1.cmd_lvwGLClear.create(button)
+gui.SS_Form1.cmd_lvwGLClear.caption("Clear")
+gui.SS_Form1.cmd_lvwGLClear.visible(True)
+gui.SS_Form1.cmd_lvwGLClear.size(1000,330)
+gui.SS_Form1.cmd_lvwGLClear.zorder(0)
+gui.SS_Form1.cmd_lvwGLClear.position(1185,4020)
+gui.SS_Form1.cmd_lvwGLClear.enabled(True)
+gui.SS_Form1.cmd_lvwGLClear.fontname("Arial")
+gui.SS_Form1.cmd_lvwGLClear.fontsize(8)
+gui.SS_Form1.cmd_lvwGLClear.event(click,cmd_lvwglclear_click)
+gui.SS_Form1.cmd_lvwGLClear.SetInternationalID(106700)
+gui.SS_Form1.chkDetail.create(checkbox)
+gui.SS_Form1.chkDetail.caption("Show Detail")
+gui.SS_Form1.chkDetail.visible(True)
+gui.SS_Form1.chkDetail.size(1800,300)
+gui.SS_Form1.chkDetail.zorder(0)
+gui.SS_Form1.chkDetail.position(100,4550)
+gui.SS_Form1.chkDetail.enabled(True)
+gui.SS_Form1.chkDetail.alignment(0)
+gui.SS_Form1.chkDetail.fontname("Arial")
+gui.SS_Form1.chkDetail.fontsize(8)
+gui.SS_Form1.cmdPrint.create(button)
+gui.SS_Form1.cmdPrint.caption("Print")
+gui.SS_Form1.cmdPrint.visible(True)
+gui.SS_Form1.cmdPrint.size(1000,360)
+gui.SS_Form1.cmdPrint.zorder(0)
+gui.SS_Form1.cmdPrint.position(100,4935)
+gui.SS_Form1.cmdPrint.enabled(True)
+gui.SS_Form1.cmdPrint.fontname("Arial")
+gui.SS_Form1.cmdPrint.fontsize(8)
+gui.SS_Form1.cmdPrint.event(click,cmdprint_click)
+gui.SS_Form1.dtpStart.tabstop(true)
+gui.SS_Form1.dtpStart.tabindex(1)
+gui.SS_Form1.dtpStop.tabstop(true)
+gui.SS_Form1.dtpStop.tabindex(2)
+gui.SS_Form1.txtBegGL.tabstop(true)
+gui.SS_Form1.txtBegGL.tabindex(3)
+gui.SS_Form1.cmd_txtBegGL.tabstop(true)
+gui.SS_Form1.cmd_txtBegGL.tabindex(4)
+gui.SS_Form1.txtEndGL.tabstop(true)
+gui.SS_Form1.txtEndGL.tabindex(5)
+gui.SS_Form1.cmd_txtEndGL.tabstop(true)
+gui.SS_Form1.cmd_txtEndGL.tabindex(6)
+gui.SS_Form1.cmd_lvwGLAdd.tabstop(true)
+gui.SS_Form1.cmd_lvwGLAdd.tabindex(7)
+gui.SS_Form1.chkAll.tabstop(true)
+gui.SS_Form1.chkAll.tabindex(8)
+gui.SS_Form1.lvwGL.tabstop(true)
+gui.SS_Form1.lvwGL.tabindex(9)
+gui.SS_Form1.chkDetail.tabstop(true)
+gui.SS_Form1.chkDetail.tabindex(10)
+gui.SS_Form1.cmdPrint.tabstop(true)
+gui.SS_Form1.cmdPrint.tabindex(11)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.Global.iKey.Declare(Long,0)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+Gui.SS_Form1..Show
+
+Program.Sub.Main.End
+
+program.sub.cmd_txtbeggl_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_txtbeggl_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+
+'Opening browser for beginning bin
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser(6000,"",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_Form1.txtBegGL.Text(V.Local.sRet(0).Trim)
+	Gui.SS_Form1.txtEndGL.Text(V.Screen.SS_Form1!txtBegGL.Text)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_txtbeggl_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmd_txtbeggl_click.end
+
+program.sub.cmd_txtendgl_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_txtendgl_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+
+'Opening browser for ending bin
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser(6000,"",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_Form1.txtEndGL.Text(V.Local.sRet(0).Trim)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_txtendgl_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmd_txtendgl_click.end
+
+program.sub.cmd_lvwgladd_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_lvwgladd_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Adding beginning and ending bin to listview
+F.Intrinsic.Math.Add(V.Global.iKey,1,V.Global.iKey)
+Gui.SS_Form1.lvwGL.AddListItem(V.Global.iKey,V.Screen.SS_Form1!txtBegGL.Text)
+Gui.SS_Form1.lvwGL.SetListItemSubItemText(V.Global.iKey,1,V.Screen.SS_Form1!txtEndGL.Text)
+Gui.SS_Form1.txtBegGL.Text("")
+Gui.SS_Form1.txtEndGL.Text("")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_lvwgladd_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmd_lvwgladd_click.end
+
+program.sub.cmd_lvwgldelete_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_lvwgldelete_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iKey.Declare(Long)
+
+V.Local.iKey.Set(V.Screen.SS_Form1!lvwGL.SelectedItemKey)
+Gui.SS_Form1.lvwGL.RemoveItem(V.Local.iKey)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_lvwgldelete_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmd_lvwgldelete_click.end
+
+program.sub.cmd_lvwglclear_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_lvwglclear_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Clearing list view of all range selections
+Gui.SS_Form1.lvwGL.ClearItems
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_lvwglclear_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmd_lvwglclear_click.end
+
+program.sub.cmdprint_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdprint_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSql.Declare(String)
+
+Gui.SS_Form1..Visible(False)
+F.Intrinsic.String.Concat("Delete GCG_3850_PO_COGS where Terminal = '",V.Caller.Terminal,"'",V.Local.sSql)
+F.ODBC.Connection!con.Execute(V.Local.sSql)
+F.Intrinsic.Control.CallSub(Loadrst)
+F.Intrinsic.Control.CallSub(Callbi)
+F.Intrinsic.Control.CallSub(Ss_form1_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdprint_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdprint_click.end
+
+program.sub.ss_form1_unload.start
+F.ODBC.Connection!con.Close
+F.Intrinsic.Control.End
+
+program.sub.ss_form1_unload.end
+
+program.sub.chkall_click.start
+F.Intrinsic.Control.SetErrorHandler("chkall_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'If All Bins is checked, disabling screen items, otherwise enabling them
+F.Intrinsic.Control.If(V.Screen.SS_Form1!chkAll.Value,=,1)
+	Gui.SS_Form1.txtBegGL.Enabled(False)
+	Gui.SS_Form1.txtBegGL.Text("")
+	Gui.SS_Form1.txtEndGL.Enabled(False)
+	Gui.SS_Form1.txtEndGL.Text("")
+	Gui.SS_Form1.cmd_lvwGLAdd.Enabled(False)
+	Gui.SS_Form1.cmd_lvwGLClear.Enabled(False)
+	Gui.SS_Form1.cmd_lvwGLDelete.Enabled(False)
+	Gui.SS_Form1.lvwGL.Enabled(False)
+	Gui.SS_Form1.cmd_txtBegGL.Enabled(False)
+	Gui.SS_Form1.cmd_txtEndGL.Enabled(False)
+F.Intrinsic.Control.Else
+	Gui.SS_Form1.txtBegGL.Enabled(True)
+	Gui.SS_Form1.txtEndGL.Enabled(True)
+	Gui.SS_Form1.cmd_lvwGLAdd.Enabled(True)
+	Gui.SS_Form1.cmd_lvwGLClear.Enabled(True)
+	Gui.SS_Form1.cmd_lvwGLDelete.Enabled(True)
+	Gui.SS_Form1.lvwGL.Enabled(True)
+	Gui.SS_Form1.cmd_txtBegGL.Enabled(True)
+	Gui.SS_Form1.cmd_txtEndGL.Enabled(True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("chkall_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.chkall_click.end
+
+Program.Sub.LoadRst.Start
+F.Intrinsic.Control.SetErrorHandler("LoadRst_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.sGLList.Declare(String)
+V.Local.i.Declare(Long)
+V.Local.iOrd.Declare(Long)
+V.Local.sGL.Declare(String)
+V.Local.dStart.Declare(Date)
+V.Local.dStop.Declare(Date)
+V.Local.sVendorName.Declare(String)
+V.Local.sPOLine.Declare(String)
+
+V.Local.dStart.Set(V.Screen.SS_Form1!dtpStart.Value)
+V.Local.dStop.Set(V.Screen.SS_Form1!dtpStop.Value)
+
+'Opening table to write
+V.Local.sSql.Set("Select * from GCG_3850_PO_COGS")
+F.ODBC.Connection!con.OpenLocalRecordsetRW("rst",V.Local.sSql)
+'Checking to see if All GL was checked, if so, loading table with all records
+F.Intrinsic.Control.If(V.Screen.SS_Form1!chkAll.Value,=,1)
+	F.Intrinsic.String.Concat("Select GL_ACCOUNT, PURCHASE_ORDER, PO_LINE, VENDOR, DATE_RECEIVED, PART, LOCATION, DESCRIPTION, QTY_RECEIVED, DATE_RECEIVED, EXTENSION From V_PO_HISTORY where DATE_RECEIVED between '",V.Local.dStart.PervasiveDate,"' and '",V.Local.dStop.PervasiveDate,"'",V.Local.sSql)
+	F.ODBC.Connection!con.OpenRecordsetRO("rstRcvr",V.Local.sSql)
+	F.Intrinsic.Control.DoUntil(V.ODBC.con!rstRcvr.EOF,=,True)
+		F.Intrinsic.String.Concat(V.ODBC.con!rstRcvr.FieldValTrim!PO_LINE,"",V.Local.sPOLine)
+
+		F.ODBC.con!rst.AddNew
+		F.ODBC.con!rst.Set!Terminal(V.Caller.Terminal)
+
+		'Getting GL Account
+		F.Intrinsic.String.Concat("Select USER_1 from V_PO_LINES where PURCHASE_ORDER = '",V.ODBC.con!rstRcvr.FieldValTrim!PURCHASE_ORDER,"' and RECORD_NO = '",V.Local.sPOLine,"'",V.Local.sSql)
+		F.ODBC.Connection!con.OpenLocalRecordsetRO("rstGL",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.con!rstGL.EOF,=,True)
+			F.ODBC.con!rst.Set!GL_Account("")
+		F.Intrinsic.Control.Else
+			F.ODBC.con!rst.Set!GL_Account(V.ODBC.con!rstGL.FieldValTrim!USER_1)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.con!rstGL.Close
+
+		F.ODBC.con!rst.Set!PO_Number(V.ODBC.con!rstRcvr.FieldValTrim!PURCHASE_ORDER)
+
+		'Getting vendor name
+		F.Intrinsic.String.Concat("Select NAME_VENDOR from V_VENDOR_MASTER where VENDOR = '",V.ODBC.con!rstRcvr.FieldValTrim!VENDOR,"'",V.Local.sSql)
+		F.ODBC.Connection!con.OpenLocalRecordsetRO("rstName",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.con!rstName.EOF,=,True)
+			V.Local.sVendorName.Set("")
+		F.Intrinsic.Control.Else
+			V.Local.sVendorName.Set(V.ODBC.con!rstName.FieldValTrim!NAME_VENDOR)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.con!rstName.Close
+
+		F.ODBC.con!rst.Set!Vendor_Name(V.Local.sVendorName)
+		F.ODBC.con!rst.Set!Date_Received(V.ODBC.con!rstRcvr.FieldVal!DATE_RECEIVED)
+		F.ODBC.con!rst.Set!Part(V.ODBC.con!rstRcvr.FieldValTrim!PART)
+		F.ODBC.con!rst.Set!Location(V.ODBC.con!rstRcvr.FieldValTrim!LOCATION)
+		F.ODBC.con!rst.Set!Part_Description(V.ODBC.con!rstRcvr.FieldValTrim!DESCRIPTION)
+		F.ODBC.con!rst.Set!Quantity_Received(V.ODBC.con!rstRcvr.FieldValTrim!QTY_RECEIVED)
+		F.ODBC.con!rst.Set!Cost(V.ODBC.con!rstRcvr.FieldValTrim!EXTENSION)
+		F.ODBC.con!rst.Set!PO_LINE(V.ODBC.con!rstRcvr.FieldVal!PO_LINE)
+		F.ODBC.con!rst.Set!po_GL(V.ODBC.con!rstRcvr.FieldVal!GL_ACCOUNT)
+		F.ODBC.con!rst.Update
+		F.ODBC.con!rstRcvr.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.con!rstRcvr.Close
+F.Intrinsic.Control.Else
+	'If all GLs was not checked, looping through list view to get each range selected and loading table for each range of GLs
+	Gui.SS_Form1.lvwGL.RetrieveAllListItems(V.Local.sGLList)
+	F.Intrinsic.Control.If(V.Local.sGLList,<>,"***NORETURN***")
+		F.Intrinsic.String.Split(V.Local.sGLList,"*!*",V.Local.sGLList)
+		F.Intrinsic.Control.For(V.Local.i,V.Local.sGLList.LBound,V.Local.sGLList.UBound,1)
+			Gui.SS_Form1.lvwGL.ListItemKeyToOrdinal(V.Local.sGLList(V.Local.i),V.Local.iOrd)
+			V.Local.sGL.Set(V.Screen.SS_Form1!lvwGL.ListItemTextExtended(V.Local.iOrd))
+			F.Intrinsic.String.Split(V.Local.sGL,"*!*",V.Local.sGL)
+			F.Intrinsic.String.Concat("Select GL_ACCOUNT, PURCHASE_ORDER, PO_LINE, VENDOR, DATE_RECEIVED, PART, LOCATION, DESCRIPTION, QTY_RECEIVED, DATE_RECEIVED, EXTENSION From V_PO_HISTORY where DATE_RECEIVED between '",V.Local.dStart.PervasiveDate,"' and '",V.Local.dStop.PervasiveDate,"'",V.Local.sSql)
+			F.ODBC.Connection!con.OpenRecordsetRO("rstRcvr",V.Local.sSql)
+			F.Intrinsic.Control.DoUntil(V.ODBC.con!rstRcvr.EOF,=,True)
+				F.Intrinsic.String.Concat(V.ODBC.con!rstRcvr.FieldValTrim!PO_LINE,"",V.Local.sPOLine)
+
+				F.Intrinsic.String.Concat("Select USER_1 from V_PO_LINES where PURCHASE_ORDER = '",V.ODBC.con!rstRcvr.FieldValTrim!PURCHASE_ORDER,"' and RECORD_NO = '",V.Local.sPOLine,"' and USER_1 between '",V.Local.sGL(0),"' and '",V.Local.sGL(1),"'",V.Local.sSql)
+				F.ODBC.Connection!con.OpenLocalRecordsetRO("rstGL",V.Local.sSql)
+				F.Intrinsic.Control.If(V.ODBC.con!rstGL.EOF,=,False)
+					F.ODBC.con!rst.AddNew
+					F.ODBC.con!rst.Set!Terminal(V.Caller.Terminal)
+					F.ODBC.con!rst.Set!GL_Account(V.ODBC.con!rstGL.FieldValTrim!USER_1)
+					F.ODBC.con!rst.Set!PO_Number(V.ODBC.con!rstRcvr.FieldValTrim!PURCHASE_ORDER)
+
+					'Getting vendor name
+					F.Intrinsic.String.Concat("Select NAME_VENDOR from V_VENDOR_MASTER where VENDOR = '",V.ODBC.con!rstRcvr.FieldValTrim!VENDOR,"'",V.Local.sSql)
+					F.ODBC.Connection!con.OpenLocalRecordsetRO("rstName",V.Local.sSql)
+					F.Intrinsic.Control.If(V.ODBC.con!rstName.EOF,=,True)
+						V.Local.sVendorName.Set("")
+					F.Intrinsic.Control.Else
+						V.Local.sVendorName.Set(V.ODBC.con!rstName.FieldValTrim!NAME_VENDOR)
+					F.Intrinsic.Control.EndIf
+					F.ODBC.con!rstName.Close
+
+					F.ODBC.con!rst.Set!Vendor_Name(V.Local.sVendorName)
+					F.ODBC.con!rst.Set!Date_Received(V.ODBC.con!rstRcvr.FieldVal!DATE_RECEIVED)
+					F.ODBC.con!rst.Set!Part(V.ODBC.con!rstRcvr.FieldValTrim!PART)
+					F.ODBC.con!rst.Set!Location(V.ODBC.con!rstRcvr.FieldValTrim!LOCATION)
+					F.ODBC.con!rst.Set!Part_Description(V.ODBC.con!rstRcvr.FieldValTrim!DESCRIPTION)
+					F.ODBC.con!rst.Set!Quantity_Received(V.ODBC.con!rstRcvr.FieldValTrim!QTY_RECEIVED)
+					F.ODBC.con!rst.Set!Cost(V.ODBC.con!rstRcvr.FieldValTrim!EXTENSION)
+					F.ODBC.con!rst.Set!PO_LINE(V.ODBC.con!rstRcvr.FieldVal!PO_Line)
+					F.ODBC.con!rst.Set!PO_GL(V.ODBC.con!rstRcvr.FieldVal!GL_ACCOUNT)
+					F.ODBC.con!rst.Update
+				F.Intrinsic.Control.EndIf
+				F.ODBC.con!rstGL.Close
+				F.ODBC.con!rstRcvr.MoveNext
+			F.Intrinsic.Control.Loop
+			F.ODBC.con!rstRcvr.Close
+		F.Intrinsic.Control.Next(V.Local.i)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+F.ODBC.con!rst.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("LoadRst_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.LoadRst.End
+
+Program.Sub.CallBI.Start
+F.Intrinsic.Control.SetErrorHandler("CallBI_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iReportID.Declare(Long)
+V.Local.sParam.Declare(String)
+V.Local.sParamVals.Declare(String)
+V.Local.sStartDate.Declare(String)
+V.Local.sStopDate.Declare(String)
+V.Local.sReportFile.Declare(String)
+
+V.Local.sStartDate.Set(V.Screen.SS_Form1!dtpStart.Value)
+V.Local.sStopDate.Set(V.Screen.SS_Form1!dtpStop.Value)
+
+V.Local.sParam.Set("Terminal*!*StartDate*!*StopDate")
+F.Intrinsic.String.Concat(V.Caller.Terminal,"*!*",V.Local.sStartDate,"*!*",V.Local.sStopDate,V.Local.sParamVals)
+
+F.Intrinsic.String.Split(V.Local.sParam,"*!*",V.Local.sParam)
+F.Intrinsic.String.Split(V.Local.sParamVals,"*!*",V.Local.sParamVals)
+
+F.Intrinsic.Control.If(V.Screen.SS_Form1!chkDetail.Value,=,1)
+	F.Intrinsic.String.Concat(V.Caller.BusintDir,"\Custom\GCG_3850_PO_COGS.rpt",V.Local.sReportFile)
+	F.Global.BI.InitializeReport("PO COGS Breakdown",V.Local.sReportFile,V.Local.iReportID)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Concat(V.Caller.BusintDir,"\Custom\GCG_3850_PO_COGS_Summary.rpt",V.Local.sReportFile)
+	F.Global.BI.InitializeReport("PO_COGS_Summary",V.Local.sReportFile,V.Local.iReportID)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Debug.Stop
+
+F.Global.BI.PrintReport(V.Local.iReportID,0,V.Local.sParam,V.Local.sParamVals,"",False)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CallBI_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.CallBI.End
+
+program.sub.txtbeggl_lostfocus.start
+F.Intrinsic.Control.SetErrorHandler("txtbeggl_lostfocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+Gui.SS_Form1.txtEndGL.Text(V.Screen.SS_Form1!txtBegGL.Text)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtbeggl_lostfocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3850_PO_COGS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_form1_unload)
+Function.Intrinsic.Control.EndIf
+
+program.sub.txtbeggl_lostfocus.end
+
+Program.Sub.Comments.Start
+${$0$}$GCG_PO_COGS$}$MLA$}$5/13/2013
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Middleville Tool and Die Company
+Table: GCG_PO_COGS
+Program.Sub.Comments.End
+Program.Sub.ScreenSS.Start
+SS_Form1{{CAPTION::PO COGS Breakdown
+SS_Form1.CTRL{{NAME::dtpStart\\TYPE::6\\CAPTION::Start Date\\TABSTOP::1\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::dtpStop\\TYPE::6\\CAPTION::Stop Date\\TABSTOP::2\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::txtBegGL\\TYPE::2\\CAPTION::Beginning GL Account\\RANGE::lvwGL\\TABSTOP::3\\GROUP::2\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::txtEndGL\\TYPE::2\\CAPTION::Ending GL Account\\RANGE::lvwGL\\TABSTOP::4\\GROUP::2\\BROWSER::1\\SIZE::1
+SS_Form1.CTRL{{NAME::chkAll\\TYPE::9\\CAPTION::All GL Accounts\\TABSTOP::5\\GROUP::-1\\SUBGROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::lvwGL\\TYPE::7\\TABSTOP::6\\GROUP::-1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::chkDetail\\TYPE::9\\CAPTION::Show Detail\\TABSTOP::7\\GROUP::-1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdPrint\\TYPE::5\\CAPTION::Print\\TABSTOP::8\\GROUP::-1\\BROWSER::0\\SIZE::1
+
+Program.Sub.ScreenSS.End
+
